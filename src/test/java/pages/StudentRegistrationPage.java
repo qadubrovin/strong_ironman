@@ -10,25 +10,9 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class StudentRegistrationPage {
 
+    String monthOfBirth = "August",
+            yearOfBirth = "1988";
 
-    static Faker faker = new Faker();
-
-    //variables
-    public String firstName = faker.name().firstName(),
-            lastName = faker.name().lastName(),
-            email = faker.internet().emailAddress(),
-            gender3 = "Other",
-            mobile = faker.number().digits(10),
-            monthOfBirth = "August",
-            yearOfBirth = "1988",
-            dayOfBirth = "15",
-            subject = "English",
-            hobby = "Sports",
-            picturePath = "img/Screenshot_2.png",
-            pictureName = "Screenshot_2.png",
-            currentAddress = faker.address().fullAddress(),
-            state = "Uttar Pradesh",
-            city = "Agra";
 
     //selectors for fill form
     public String otherGender = "//*[@id='genterWrapper']//*[@for='gender-radio-3']",
