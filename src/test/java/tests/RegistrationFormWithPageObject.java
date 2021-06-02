@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
 
 
 public class RegistrationFormWithPageObject {
@@ -41,7 +40,7 @@ public class RegistrationFormWithPageObject {
         //fill form
         registrationPage.openRegistrationForm();
         registrationPage.name.setValue(firstName);
-        registrationPage.familyName.setValue(lastName);
+        registrationPage.lastName.setValue(lastName);
         registrationPage.userEmail.setValue(email);
         registrationPage.otherGender.click();
         registrationPage.userNumber.setValue(mobile);

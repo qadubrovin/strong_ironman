@@ -10,19 +10,16 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class StudentRegistrationPage<nameColumn> {
 
-    String monthOfBirth = "August",
-            yearOfBirth = "1988";
-
 
     //selectors for fill form
     public SelenideElement otherGender = $x("//*[@for='gender-radio-3']"),
             name = $("#firstName"),
-            familyName = $x("//*[@id='lastName']"),
+            lastName = $("#lastName"),
             userEmail = $("#userEmail"),
             userNumber = $("#userNumber"),
             subjectInput = $("#subjectsInput"),
             submitButton = $("#submit"),
-            hobbySports = $x("//*[contains(text(),'Sports')]"),
+            hobbySports = $(byText("Sports")),
             uploadPicture = $("#uploadPicture"),
             usersAddress = $("#currentAddress");
 
@@ -37,8 +34,7 @@ public class StudentRegistrationPage<nameColumn> {
             hobbyColumn = $x("//td[text()='Hobbies']"),
             pictureColumn = $x("//td[text()='Picture']"),
             addressColumn = $x("//*[@class='table-responsive']//td[contains(text(),'Address')]//.."),
-            stateAndCityColumn = $x("//td[text()='State and City']"),
-            closeModal = $("#closeLargeModal");
+            stateAndCityColumn = $x("//td[text()='State and City']");
 
     //methods
     public void setDate(String monthOfBirth, String yearOfBirth) {
