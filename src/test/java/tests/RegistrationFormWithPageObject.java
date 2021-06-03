@@ -58,17 +58,16 @@ public class RegistrationFormWithPageObject {
         registrationPage.clickSubmitButton();
 
         //check successful popup
-        registrationPage.successHeader.shouldHave(text("Thanks for submitting the form"));
-        registrationPage.nameColumn.shouldHave(text(firstName + ' ' + lastName));
-        registrationPage.studentEmailColumn.shouldHave(text(email));
-        registrationPage.studentGenderColumn.shouldHave(text(gender3));
-        registrationPage.birthdateColumn.shouldHave(text("Date of Birth 15 August,1988"));
-        registrationPage.mobileColumn.shouldHave(text(mobile));
-        registrationPage.subjectsColumn.parent().shouldHave(text(subject));
-        registrationPage.hobbyColumn.parent().shouldHave(text(hobby));
-        registrationPage.pictureColumn.parent().shouldHave(text(pictureName));
-        registrationPage.addressColumn.shouldHave(text(currentAddress));
-        registrationPage.stateAndCityColumn.parent().shouldHave(text(state + ' ' + city));
-        Selenide.sleep(3000);
+        registrationPage.checkSuccessfulPopup(firstName,
+                lastName,
+                email,
+                gender3,
+                mobile,
+                subject,
+                hobby,
+                pictureName,
+                currentAddress,
+                state,
+                city);
     }
 }

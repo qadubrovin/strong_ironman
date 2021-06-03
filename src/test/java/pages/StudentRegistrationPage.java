@@ -12,7 +12,7 @@ public class StudentRegistrationPage {
 
 
     //selectors for fill form
-    public SelenideElement otherGenderInput = $x("//*[@for='gender-radio-3']"),
+    private SelenideElement otherGenderInput = $x("//*[@for='gender-radio-3']"),
             nameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
@@ -24,7 +24,7 @@ public class StudentRegistrationPage {
             usersAddress = $("#currentAddress");
 
     //selectors for success form
-    public SelenideElement successHeader = $("#example-modal-sizes-title-lg"),
+    private SelenideElement successHeader = $("#example-modal-sizes-title-lg"),
             nameColumn = $x("//*[contains(text(),'Student Name')]//.."),
             studentEmailColumn = $x("//*[contains(text(),'Student Email')]//.."),
             studentGenderColumn = $x("//*[@class='table-responsive']//td[contains(text(),'Gender')]//.."),
@@ -99,8 +99,28 @@ public class StudentRegistrationPage {
         submitButton.click();
     }
 
-    public void checkSuccessfulPopup() {
-        submitButton.click();
+    public void checkSuccessfulPopup(String firstName,
+                                     String lastName,
+                                     String email,
+                                     String gender,
+                                     String mobile,
+                                     String subject,
+                                     String hobby,
+                                     String pictureName,
+                                     String currentAddress,
+                                     String state,
+                                     String city) {
+        successHeader.shouldHave(text("Thanks for submitting the form"));
+        nameColumn.shouldHave(text(firstName + ' ' + lastName));
+        studentEmailColumn.shouldHave(text(email));
+        studentGenderColumn.shouldHave(text(gender));
+        birthdateColumn.shouldHave(text("Date of Birth 15 August,1988"));
+        mobileColumn.shouldHave(text(mobile));
+        subjectsColumn.parent().shouldHave(text(subject));
+        hobbyColumn.parent().shouldHave(text(hobby));
+        pictureColumn.parent().shouldHave(text(pictureName));
+        addressColumn.shouldHave(text(currentAddress));
+        stateAndCityColumn.parent().shouldHave(text(state + ' ' + city));
     }
 
 
