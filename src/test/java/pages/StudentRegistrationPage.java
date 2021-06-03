@@ -8,15 +8,15 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class StudentRegistrationPage<nameColumn> {
+public class StudentRegistrationPage {
 
 
     //selectors for fill form
-    public SelenideElement otherGender = $x("//*[@for='gender-radio-3']"),
-            name = $("#firstName"),
-            lastName = $("#lastName"),
-            userEmail = $("#userEmail"),
-            userNumber = $("#userNumber"),
+    public SelenideElement otherGenderInput = $x("//*[@for='gender-radio-3']"),
+            nameInput = $("#firstName"),
+            lastNameInput = $("#lastName"),
+            userEmailInput = $("#userEmail"),
+            userNumberInput = $("#userNumber"),
             subjectInput = $("#subjectsInput"),
             submitButton = $("#submit"),
             hobbySports = $(byText("Sports")),
@@ -55,6 +55,52 @@ public class StudentRegistrationPage<nameColumn> {
     public void openRegistrationForm() {
         open("https://demoqa.com/automation-practice-form");
         $(".main-header").shouldHave(text("Practice Form"));
+    }
+
+    public void setFullName(String name, String lastName) {
+        nameInput.setValue(name);
+        lastNameInput.setValue(lastName);
+    }
+
+    public void setEmail(String email) {
+        userEmailInput.setValue(email);
+    }
+
+    public void setGender() {
+        otherGenderInput.click();
+    }
+
+    public void setMobile(String mobile) {
+        userNumberInput.setValue(mobile);
+    }
+
+    public void setSubject(String subject) {
+        subjectInput.val(subject).pressEnter();
+        ;
+    }
+
+    public void scrollIntoSubmitView() {
+        submitButton.scrollIntoView(true);
+    }
+
+    public void sportsHobbyChoose() {
+        hobbySports.click();
+    }
+
+    public void setUploadPicture(String filepath) {
+        uploadPicture.uploadFromClasspath(filepath);
+    }
+
+    public void setAddress(String address) {
+        usersAddress.setValue(address);
+    }
+
+    public void clickSubmitButton() {
+        submitButton.click();
+    }
+
+    public void checkSuccessfulPopup() {
+        submitButton.click();
     }
 
 

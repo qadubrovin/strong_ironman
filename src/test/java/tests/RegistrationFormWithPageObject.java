@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,9 @@ public class RegistrationFormWithPageObject {
             pictureName = "Screenshot_2.png",
             currentAddress = faker.address().fullAddress(),
             state = "Uttar Pradesh",
-            city = "Agra";
+            city = "Agra",
+            monthOfBirth = "August",
+            yearOfBirth = "1988";
 
 
     @BeforeAll
@@ -39,19 +42,20 @@ public class RegistrationFormWithPageObject {
 
         //fill form
         registrationPage.openRegistrationForm();
-        registrationPage.name.setValue(firstName);
-        registrationPage.lastName.setValue(lastName);
-        registrationPage.userEmail.setValue(email);
-        registrationPage.otherGender.click();
-        registrationPage.userNumber.setValue(mobile);
-        registrationPage.setDate("August", "1988");
-        registrationPage.subjectInput.val(subject).pressEnter();
-        registrationPage.submitButton.scrollIntoView(true);
-        registrationPage.hobbySports.click();
-        registrationPage.uploadPicture.uploadFromClasspath(picturePath);
+        registrationPage.setFullName(firstName, lastName);
+        registrationPage.setEmail(email);
+        registrationPage.setGender();
+        registrationPage.setMobile(mobile);
+        registrationPage.setDate(monthOfBirth, yearOfBirth);
+        registrationPage.setSubject(subject);
+        registrationPage.scrollIntoSubmitView();
+        registrationPage.sportsHobbyChoose();
+        registrationPage.setUploadPicture(picturePath);
         registrationPage.setStateAndCity();
-        registrationPage.usersAddress.setValue(currentAddress);
-        registrationPage.submitButton.click();
+        registrationPage.setAddress(currentAddress);
+
+        //submitting form
+        registrationPage.clickSubmitButton();
 
         //check successful popup
         registrationPage.successHeader.shouldHave(text("Thanks for submitting the form"));
@@ -65,6 +69,6 @@ public class RegistrationFormWithPageObject {
         registrationPage.pictureColumn.parent().shouldHave(text(pictureName));
         registrationPage.addressColumn.shouldHave(text(currentAddress));
         registrationPage.stateAndCityColumn.parent().shouldHave(text(state + ' ' + city));
-
+        Selenide.sleep(3000);
     }
 }
